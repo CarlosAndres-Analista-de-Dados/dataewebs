@@ -146,6 +146,28 @@ html.dark .tool-logo-card {
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 html.dark .tool-logo-label { color: #94a3b8 !important; }
+
+/* --- Reforços de UI para mobile --- */
+html, body { overflow-x: hidden; max-width: 100%; }
+
+.mobile-menu {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.28s ease;
+    border-top: 1px solid transparent;
+}
+.mobile-menu.open {
+    grid-template-rows: 1fr;
+    border-top-color: rgba(148, 163, 184, 0.35);
+}
+html.dark .mobile-menu.open { border-top-color: rgba(148, 163, 184, 0.15); }
+.mobile-menu-inner { overflow: hidden; }
+
+@media (max-width: 400px) {
+    .tool-logo-card { padding: 14px 8px 10px; min-height: 96px; gap: 6px; }
+    .tool-logo-img { height: 38px; }
+    .tool-logo-label { font-size: 11px; }
+}
 </style>
 </head>
 <body class="bg-slate-100 text-slate-800 antialiased selection:bg-sky-500 selection:text-white">
@@ -172,37 +194,40 @@ html.dark .tool-logo-label { color: #94a3b8 !important; }
             <a href="#contato" class="hover:text-sky-600 transition">Contato</a>
         </nav>
 
-        <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+        <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
             <button id="themeToggle" type="button" onclick="toggleTheme()" class="inline-flex theme-toggle" aria-label="Alternar modo escuro">
                 <span class="toggle-knob"><i class="fa-solid fa-sun" id="themeToggleIcon"></i></span>
             </button>
-            <a href="#contato" class="bg-sky-600 hover:bg-sky-700 text-white text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-lg shadow-sm transition">
+            <a href="#contato" class="hidden sm:inline-flex bg-sky-600 hover:bg-sky-700 text-white text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-lg shadow-sm transition">
                 Falar comigo
             </a>
             <button id="mobileMenuBtn" type="button" onclick="toggleMobileMenu()" aria-label="Abrir menu" aria-expanded="false"
-                class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-100 transition">
-                <i class="fa-solid fa-bars" id="mobileMenuIcon"></i>
+                class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-100 active:bg-slate-100 transition">
+                <i class="fa-solid fa-bars text-base" id="mobileMenuIcon"></i>
             </button>
         </div>
     </div>
 
-    <nav id="mobileMenu" class="md:hidden hidden flex-col border-t border-slate-200 bg-white/95 backdrop-blur">
-        <a href="#inicio" onclick="closeMobileMenu()" class="px-4 py-3 text-sm font-semibold text-slate-700 border-b border-slate-100">Início</a>
-        <a href="#projetos" onclick="closeMobileMenu()" class="px-4 py-3 text-sm font-semibold text-slate-700 border-b border-slate-100">Projetos</a>
-        <a href="#processo" onclick="closeMobileMenu()" class="px-4 py-3 text-sm font-semibold text-slate-700 border-b border-slate-100">Como trabalho</a>
-        <a href="#contato" onclick="closeMobileMenu()" class="px-4 py-3 text-sm font-semibold text-slate-700">Contato</a>
+    <nav id="mobileMenu" class="md:hidden mobile-menu bg-white/95 backdrop-blur">
+        <div class="mobile-menu-inner">
+            <a href="#inicio" onclick="closeMobileMenu()" class="block px-4 py-3.5 text-sm font-semibold text-slate-700 border-b border-slate-100 active:bg-slate-50">Início</a>
+            <a href="#projetos" onclick="closeMobileMenu()" class="block px-4 py-3.5 text-sm font-semibold text-slate-700 border-b border-slate-100 active:bg-slate-50">Projetos</a>
+            <a href="#processo" onclick="closeMobileMenu()" class="block px-4 py-3.5 text-sm font-semibold text-slate-700 border-b border-slate-100 active:bg-slate-50">Como trabalho</a>
+            <a href="#contato" onclick="closeMobileMenu()" class="block px-4 py-3.5 text-sm font-semibold text-slate-700 border-b border-slate-100 active:bg-slate-50">Contato</a>
+            <a href="#contato" onclick="closeMobileMenu()" class="block mx-4 my-3 text-center bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold px-4 py-3 rounded-lg shadow-sm transition">Falar comigo</a>
+        </div>
     </nav>
 </header>
 
 <script>
 function toggleMobileMenu() {
     const menu = document.getElementById('mobileMenu');
-    const isOpen = !menu.classList.contains('hidden');
+    const isOpen = menu.classList.contains('open');
     if (isOpen) { closeMobileMenu(); }
     else {
         const btn = document.getElementById('mobileMenuBtn');
         const icon = document.getElementById('mobileMenuIcon');
-        menu.classList.remove('hidden'); menu.classList.add('flex');
+        menu.classList.add('open');
         icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark');
         btn.setAttribute('aria-expanded', 'true');
     }
@@ -211,7 +236,7 @@ function closeMobileMenu() {
     const menu = document.getElementById('mobileMenu');
     const icon = document.getElementById('mobileMenuIcon');
     const btn = document.getElementById('mobileMenuBtn');
-    menu.classList.add('hidden'); menu.classList.remove('flex');
+    menu.classList.remove('open');
     icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars');
     btn.setAttribute('aria-expanded', 'false');
 }
@@ -220,7 +245,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobil
 document.addEventListener('click', (e) => {
     const menu = document.getElementById('mobileMenu');
     const btn = document.getElementById('mobileMenuBtn');
-    if (!menu.classList.contains('hidden') && !menu.contains(e.target) && !btn.contains(e.target)) {
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
         closeMobileMenu();
     }
 });
@@ -262,11 +287,11 @@ if (document.documentElement.classList.contains('dark')) {
             onde estão os problemas de manutenção, quanto já avançou a modernização LED
             e como andam os ofícios em tramitação.
         </p>
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <a href="#projetos" class="bg-sky-500 hover:bg-sky-400 text-slate-900 font-medium px-5 py-3 rounded-xl transition">
+        <div class="mt-8 flex flex-col sm:flex-row w-full sm:w-auto items-stretch sm:items-center justify-center gap-3">
+            <a href="#projetos" class="bg-sky-500 hover:bg-sky-400 active:bg-sky-400 text-slate-900 font-medium px-5 py-3.5 sm:py-3 rounded-xl transition text-center">
                 Ver os 3 projetos
             </a>
-            <a href="#contato" class="border border-white/20 hover:bg-white/10 text-white font-medium px-5 py-3 rounded-xl transition">
+            <a href="#contato" class="border border-white/20 hover:bg-white/10 active:bg-white/10 text-white font-medium px-5 py-3.5 sm:py-3 rounded-xl transition text-center">
                 Falar comigo
             </a>
         </div>
@@ -511,11 +536,11 @@ if (document.documentElement.classList.contains('dark')) {
             Me conte qual das três frentes é mais urgente para a sua empresa hoje —
             manutenção, modernização LED ou gestão de ofícios — e eu te mostro como seria na prática.
         </p>
-        <div class="flex flex-wrap justify-center gap-4 pt-2 text-sm">
-            <a href="mailto:seuemail@exemplo.com" class="bg-sky-500 hover:bg-sky-400 text-slate-900 font-semibold px-5 py-3 rounded-xl transition flex items-center gap-2">
+        <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 pt-2 text-sm">
+            <a href="mailto:seuemail@exemplo.com" class="bg-sky-500 hover:bg-sky-400 active:bg-sky-400 text-slate-900 font-semibold px-5 py-3.5 sm:py-3 rounded-xl transition flex items-center justify-center gap-2">
                 <i class="fa-solid fa-envelope"></i> dataewebs@gmail.com
             </a>
-            <a href="https://wa.me/5545991528626?text=Ol%C3%A1%2C%20Carlos!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener" class="border border-white/25 hover:bg-white/10 text-white font-semibold px-5 py-3 rounded-xl transition flex items-center gap-2">
+            <a href="https://wa.me/5545991528626?text=Ol%C3%A1%2C%20Carlos!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener" class="border border-white/25 hover:bg-white/10 active:bg-white/10 text-white font-semibold px-5 py-3.5 sm:py-3 rounded-xl transition flex items-center justify-center gap-2">
                 <i class="fa-brands fa-whatsapp"></i> (45) 99152 8626
             </a>
         </div>
