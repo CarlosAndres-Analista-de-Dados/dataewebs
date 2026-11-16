@@ -175,10 +175,83 @@ html.dark .mobile-menu.open { border-top-color: rgba(148, 163, 184, 0.15); }
     .tool-logo-img { height: 38px; }
     .tool-logo-label { font-size: 11px; }
 }
+
+/* ===== Ícones modernos (traço fino, estilo Lucide) ===== */
+.ico { width:1em; height:1em; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; display:inline-block; vertical-align:-0.125em; }
+
+/* Paletas por tema de cor (usadas em tiles, pílulas e checks) */
+.t-sky    { --t-bg1:#f0f9ff; --t-bg2:#e0f2fe; --t-fg:#0284c7; --t-tx:#075985; --t-ring:rgba(14,165,233,.32); }
+.t-amber  { --t-bg1:#fffbeb; --t-bg2:#fef3c7; --t-fg:#d97706; --t-tx:#92400e; --t-ring:rgba(245,158,11,.36); }
+.t-indigo { --t-bg1:#eef2ff; --t-bg2:#e0e7ff; --t-fg:#4f46e5; --t-tx:#3730a3; --t-ring:rgba(99,102,241,.32); }
+.t-emerald{ --t-bg1:#ecfdf5; --t-bg2:#d1fae5; --t-fg:#059669; --t-tx:#065f46; --t-ring:rgba(16,185,129,.34); }
+html.dark .t-sky    { --t-bg1:rgba(14,165,233,.18); --t-bg2:rgba(14,165,233,.07); --t-fg:#38bdf8; --t-tx:#7dd3fc; --t-ring:rgba(56,189,248,.30); }
+html.dark .t-amber  { --t-bg1:rgba(245,158,11,.18); --t-bg2:rgba(245,158,11,.07); --t-fg:#fbbf24; --t-tx:#fcd34d; --t-ring:rgba(251,191,36,.30); }
+html.dark .t-indigo { --t-bg1:rgba(99,102,241,.20); --t-bg2:rgba(99,102,241,.08); --t-fg:#818cf8; --t-tx:#a5b4fc; --t-ring:rgba(129,140,248,.32); }
+html.dark .t-emerald{ --t-bg1:rgba(16,185,129,.18); --t-bg2:rgba(16,185,129,.07); --t-fg:#34d399; --t-tx:#6ee7b7; --t-ring:rgba(52,211,153,.30); }
+
+/* Tile de ícone (cards de valor) */
+.ico-tile {
+    width:2.75rem; height:2.75rem; border-radius:.9rem; margin-bottom:.75rem;
+    display:flex; align-items:center; justify-content:center; font-size:1.4rem;
+    color:var(--t-fg); background:linear-gradient(145deg,var(--t-bg1),var(--t-bg2));
+    box-shadow:inset 0 0 0 1px var(--t-ring), 0 8px 16px -10px var(--t-ring);
+}
+
+/* Pílulas (selos dos projetos) */
+.pill {
+    display:inline-flex; align-items:center; gap:.5rem; padding:.25rem .8rem .25rem .3rem;
+    border-radius:9999px; font-size:.75rem; font-weight:700; letter-spacing:.01em; color:var(--t-tx);
+    background:linear-gradient(145deg,var(--t-bg1),var(--t-bg2)); box-shadow:inset 0 0 0 1px var(--t-ring);
+}
+.pill-ico {
+    width:1.5rem; height:1.5rem; border-radius:9999px; display:inline-flex; align-items:center; justify-content:center;
+    font-size:.82rem; color:#fff; background:var(--t-fg); box-shadow:0 2px 6px -2px var(--t-fg);
+}
+html.dark .pill-ico { color:#0b1220; }
+
+/* Marcadores de lista */
+.chk {
+    width:1.15rem; height:1.15rem; margin-top:.1rem; border-radius:9999px; font-size:.7rem;
+    display:inline-flex; align-items:center; justify-content:center;
+    color:var(--t-fg); background:var(--t-bg2); box-shadow:inset 0 0 0 1px var(--t-ring);
+}
+.chk .ico { stroke-width:2.6; }
+
+/* Ícones da faixa do hero */
+.hero-ic {
+    width:1.6rem; height:1.6rem; border-radius:.5rem; font-size:.9rem; color:#7dd3fc;
+    display:inline-flex; align-items:center; justify-content:center;
+    background:rgba(56,189,248,.12); box-shadow:inset 0 0 0 1px rgba(125,211,252,.22);
+}
+
+/* Botão tema / menu */
+.theme-toggle .toggle-knob .ico { font-size:12px; color:#d97706; }
+.theme-toggle .ico-moon { display:none; }
+html.dark .theme-toggle .ico-sun { display:none; }
+html.dark .theme-toggle .ico-moon { display:block; color:#93c5fd; }
+.ic-x { display:none; }
+#mobileMenuBtn[aria-expanded="true"] .ic-bars { display:none; }
+#mobileMenuBtn[aria-expanded="true"] .ic-x { display:block; }
+
+/* Passos "Como funciona" */
+.step-num {
+    width:2.5rem; height:2.5rem; border-radius:9999px; display:flex; align-items:center; justify-content:center;
+    font-weight:700; color:#fff; position:relative; z-index:1;
+    background:linear-gradient(135deg,#38bdf8,#0369a1);
+    box-shadow:0 0 0 4px rgba(14,165,233,.14), 0 8px 16px -8px rgba(3,105,161,.7);
+}
+@media (min-width:640px) {
+    .step:not(:last-child)::after {
+        content:""; position:absolute; top:1.25rem; left:calc(50% + 28px); right:calc(-50% + 4px); height:1px;
+        background:linear-gradient(90deg,rgba(14,165,233,.55),rgba(14,165,233,.08));
+    }
+}
+@media (prefers-reduced-motion: reduce) { .animate-ping { animation:none !important; } }
 </style>
 </head>
 <body class="bg-slate-100 text-slate-800 antialiased selection:bg-sky-500 selection:text-white">
 
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol><symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></symbol><symbol id="i-folder-open" viewBox="0 0 24 24"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></symbol><symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol><symbol id="i-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></symbol><symbol id="i-smartphone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></symbol><symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol><symbol id="i-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol><symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol><symbol id="i-chart-line" viewBox="0 0 24 24"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol><symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol><symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol></svg>
 <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
 
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
@@ -203,14 +276,14 @@ html.dark .mobile-menu.open { border-top-color: rgba(148, 163, 184, 0.15); }
 
         <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
             <button id="themeToggle" type="button" onclick="toggleTheme()" class="inline-flex theme-toggle" aria-label="Alternar modo escuro">
-                <span class="toggle-knob"><i class="fa-solid fa-sun" id="themeToggleIcon"></i></span>
+                <span class="toggle-knob"><svg class="ico ico-sun"  aria-hidden="true"><use href="#i-sun"/></svg><svg class="ico ico-moon" aria-hidden="true"><use href="#i-moon"/></svg></span>
             </button>
             <a href="#contato" class="hidden sm:inline-flex bg-sky-600 hover:bg-sky-700 text-white text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-lg shadow-sm transition">
                 Falar comigo
             </a>
             <button id="mobileMenuBtn" type="button" onclick="toggleMobileMenu()" aria-label="Abrir menu" aria-expanded="false"
                 class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-100 active:bg-slate-100 transition">
-                <i class="fa-solid fa-bars text-base" id="mobileMenuIcon"></i>
+                <span id="mobileMenuIcon" class="inline-flex"><svg class="ico ic-bars" style="font-size:1.25rem" aria-hidden="true"><use href="#i-menu"/></svg><svg class="ico ic-x" style="font-size:1.25rem" aria-hidden="true"><use href="#i-x"/></svg></span>
             </button>
         </div>
     </div>
@@ -235,7 +308,7 @@ function toggleMobileMenu() {
         const btn = document.getElementById('mobileMenuBtn');
         const icon = document.getElementById('mobileMenuIcon');
         menu.classList.add('open');
-        icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark');
+        
         btn.setAttribute('aria-expanded', 'true');
     }
 }
@@ -244,7 +317,7 @@ function closeMobileMenu() {
     const icon = document.getElementById('mobileMenuIcon');
     const btn = document.getElementById('mobileMenuBtn');
     menu.classList.remove('open');
-    icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars');
+    
     btn.setAttribute('aria-expanded', 'false');
 }
 window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMobileMenu(); });
@@ -282,8 +355,8 @@ if (document.documentElement.classList.contains('dark')) {
         <div class="w-[200%] h-[200%] -top-[50%] -left-[50%] absolute mesh-move"></div>
     </div>
     <div class="max-w-4xl mx-auto relative z-10 flex flex-col items-center text-center">
-        <div class="inline-flex items-center gap-2 bg-sky-500/10 border border-sky-400/20 px-3 py-1 rounded-full text-xs font-medium text-sky-300">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Disponível para novos projetos
+        <div class="inline-flex items-center gap-2.5 bg-sky-500/10 border border-sky-400/25 pl-2.5 pr-3.5 py-1.5 rounded-full text-xs font-medium text-sky-200 backdrop-blur">
+            <span class="relative flex w-2.5 h-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span><span class="relative inline-flex w-2.5 h-2.5 rounded-full bg-emerald-400"></span></span> Disponível para novos projetos
         </div>
         <h1 class="mt-6 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold tracking-tight leading-tight text-white">
             Sistemas que dão controle sobre a iluminação pública da sua cidade
@@ -305,7 +378,7 @@ if (document.documentElement.classList.contains('dark')) {
 
         <div class="mt-12 w-full max-w-2xl bg-white/[0.06] backdrop-blur-md border border-white/10 p-5 sm:p-6 rounded-2xl">
             <div class="flex items-center justify-center gap-2 text-xs uppercase tracking-wider text-sky-200/80 font-medium">
-                <i class="fa-solid fa-layer-group"></i>
+                <svg class="ico" style="font-size:1rem" aria-hidden="true"><use href="#i-layers"/></svg>
                 <span>Este portfólio</span>
             </div>
             <div class="mt-4 grid grid-cols-3 gap-3 text-center">
@@ -323,9 +396,9 @@ if (document.documentElement.classList.contains('dark')) {
                 </div>
             </div>
             <div class="mt-5 border-t border-white/10 pt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-slate-300">
-                <p class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot text-sky-300 w-4"></i> Mapas georreferenciados</p>
-                <p class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-sky-300 w-4"></i> Indicadores em tempo real</p>
-                <p class="flex items-center gap-2"><i class="fa-solid fa-file-export text-sky-300 w-4"></i> Dados exportáveis</p>
+                <p class="flex items-center gap-2"><span class="hero-ic"><svg class="ico" aria-hidden="true"><use href="#i-map-pin"/></svg></span> Mapas georreferenciados</p>
+                <p class="flex items-center gap-2"><span class="hero-ic"><svg class="ico" aria-hidden="true"><use href="#i-chart-line"/></svg></span> Indicadores em tempo real</p>
+                <p class="flex items-center gap-2"><span class="hero-ic"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg></span> Dados exportáveis</p>
             </div>
         </div>
     </div>
@@ -335,23 +408,17 @@ if (document.documentElement.classList.contains('dark')) {
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 sm:-mt-10 relative z-20">
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 mb-3">
-                <i class="fa-solid fa-gauge-high"></i>
-            </div>
+            <div class="ico-tile t-sky"><svg class="ico" aria-hidden="true"><use href="#i-gauge"/></svg></div>
             <p class="font-bold text-slate-900 text-base mb-1">Painéis que respondem perguntas reais</p>
             <p class="text-sm text-slate-500 leading-relaxed">Onde estão os problemas, quanto já avançamos e o que falta — sem precisar abrir uma planilha.</p>
         </div>
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 mb-3">
-                <i class="fa-solid fa-mobile-screen-button"></i>
-            </div>
+            <div class="ico-tile t-amber"><svg class="ico" aria-hidden="true"><use href="#i-smartphone"/></svg></div>
             <p class="font-bold text-slate-900 text-base mb-1">Uso em campo e no escritório</p>
             <p class="text-sm text-slate-500 leading-relaxed">Layout responsivo e modo escuro para a equipe consultar no celular, em qualquer hora do dia.</p>
         </div>
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 mb-3">
-                <i class="fa-solid fa-shield-halved"></i>
-            </div>
+            <div class="ico-tile t-indigo"><svg class="ico" aria-hidden="true"><use href="#i-shield-check"/></svg></div>
             <p class="font-bold text-slate-900 text-base mb-1">Você fica dono dos seus dados</p>
             <p class="text-sm text-slate-500 leading-relaxed">Importação de planilhas existentes e exportação a qualquer momento, sem depender de mim para acessar as informações.</p>
         </div>
@@ -372,9 +439,7 @@ if (document.documentElement.classList.contains('dark')) {
     <!-- PROJETO 1 — MANUTENÇÃO -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
         <div class="order-2 lg:order-1 space-y-4">
-            <span class="inline-flex items-center gap-2 bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full">
-                <i class="fa-solid fa-wrench"></i> Manutenção
-            </span>
+            <span class="pill t-sky"><span class="pill-ico"><svg class="ico" aria-hidden="true"><use href="#i-wrench"/></svg></span>Manutenção</span>
             <h3 class="text-2xl font-bold text-slate-900">Portal de Acompanhamento de Manutenção</h3>
             <p class="text-slate-600 leading-relaxed">
                 Centraliza os chamados de manutenção — lâmpadas apagadas, poda, fiação, postes danificados —
@@ -382,12 +447,12 @@ if (document.documentElement.classList.contains('dark')) {
                 em Foz do Iguaçu/PR, referência de qualidade para os demais projetos.
             </p>
             <ul class="space-y-2 text-sm text-slate-600">
-                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-600 mt-1"></i> Indicadores de atendimentos, tempo médio de espera e taxa de resolução</li>
-                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-600 mt-1"></i> Mapa interativo com os pontos de atendimento por bairro</li>
-                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-600 mt-1"></i> Tabela com busca por protocolo e exportação para CSV</li>
+                <li class="flex items-start gap-2"><span class="chk t-sky"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span> Indicadores de atendimentos, tempo médio de espera e taxa de resolução</li>
+                <li class="flex items-start gap-2"><span class="chk t-sky"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span> Mapa interativo com os pontos de atendimento por bairro</li>
+                <li class="flex items-start gap-2"><span class="chk t-sky"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span> Tabela com busca por protocolo e exportação para CSV</li>
                 <div class="dashboard-card mt-20">
-                    <a href="https://atendimentos.ipfoz.com.br/" target="_blank" rel="noopener noreferrer" class="inline-block bg-sky-500 hover:bg-sky-400 active:bg-sky-400 text-white font-medium px-5 py-3.5 sm:py-3 rounded-xl transition text-center">
-                        Acessar o Painel &rarr;
+                    <a href="https://atendimentos.ipfoz.com.br/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center justify-center gap-2 shadow-sm shadow-sky-500/25 bg-sky-500 hover:bg-sky-400 active:bg-sky-400 text-white font-medium px-5 py-3.5 sm:py-3 rounded-xl transition text-center">
+                        Acessar o Painel <svg class="ico transition-transform group-hover:translate-x-0.5" style="font-size:1.05rem" aria-hidden="true"><use href="#i-arrow-right"/></svg>
                     </a>
                 </div>
             </ul>
@@ -422,9 +487,7 @@ if (document.documentElement.classList.contains('dark')) {
         </div>
 
         <div class="space-y-4">
-            <span class="inline-flex items-center gap-2 bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full">
-                <i class="fa-solid fa-lightbulb"></i> Modernização LED
-            </span>
+            <span class="pill t-amber"><span class="pill-ico"><svg class="ico" aria-hidden="true"><use href="#i-lightbulb"/></svg></span>Modernização LED</span>
             <h3 class="text-2xl font-bold text-slate-900">Portal de Modernização LED</h3>
             <p class="text-slate-600 leading-relaxed">
                 Mostra, de forma objetiva, quanto do parque de iluminação já foi trocado para LED e quanto
@@ -432,12 +495,12 @@ if (document.documentElement.classList.contains('dark')) {
                 resultados à diretoria e a órgãos fiscalizadores.
             </p>
             <ul class="space-y-2 text-sm text-slate-600">
-                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-amber-600 mt-1"></i> Percentual de conclusão da meta, atualizado por bairro e por período</li>
-                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-amber-600 mt-1"></i> Estimativa de economia de energia gerada pela troca</li>
-                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-amber-600 mt-1"></i> Cronograma de metas versus execução, com alerta de atraso</li>
+                <li class="flex items-start gap-2"><span class="chk t-amber"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span> Percentual de conclusão da meta, atualizado por bairro e por período</li>
+                <li class="flex items-start gap-2"><span class="chk t-amber"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span> Estimativa de economia de energia gerada pela troca</li>
+                <li class="flex items-start gap-2"><span class="chk t-amber"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span> Cronograma de metas versus execução, com alerta de atraso</li>
                 <div class="dashboard-card mt-6">
-                    <a href="https://dashboard.ipfoz.com.br/" target="_blank" rel="noopener noreferrer" class="inline-block bg-sky-500 hover:bg-sky-400 active:bg-sky-400 text-white font-medium px-5 py-3.5 sm:py-3 rounded-xl transition text-center">
-                        Acessar o Painel &rarr;
+                    <a href="https://dashboard.ipfoz.com.br/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center justify-center gap-2 shadow-sm shadow-sky-500/25 bg-sky-500 hover:bg-sky-400 active:bg-sky-400 text-white font-medium px-5 py-3.5 sm:py-3 rounded-xl transition text-center">
+                        Acessar o Painel <svg class="ico transition-transform group-hover:translate-x-0.5" style="font-size:1.05rem" aria-hidden="true"><use href="#i-arrow-right"/></svg>
                     </a>
                 </div>
             </ul>
@@ -447,9 +510,7 @@ if (document.documentElement.classList.contains('dark')) {
     <!-- PROJETO 3 — OFÍCIOS -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
         <div class="order-2 lg:order-1 space-y-4">
-            <span class="inline-flex items-center gap-2 bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full">
-                <i class="fa-solid fa-folder-open"></i> Gestão de Ofícios
-            </span>
+            <span class="pill t-indigo"><span class="pill-ico"><svg class="ico" aria-hidden="true"><use href="#i-folder-open"/></svg></span>Gestão de Ofícios</span>
             <h3 class="text-2xl font-bold text-slate-900">Portal de Gestão de Ofícios e Documentos</h3>
             <p class="text-slate-600 leading-relaxed">
                 Substitui o controle manual de ofícios e correspondências oficiais por um fluxo digital
@@ -457,9 +518,9 @@ if (document.documentElement.classList.contains('dark')) {
                 tramitação — nada mais se perde em e-mail ou papel.
             </p>
             <ul class="space-y-2 text-sm text-slate-600">
-                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-600 mt-1"></i> Protocolo automático, anexos e histórico de cada documento</li>
-                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-600 mt-1"></i> Alertas de prazo de resposta e painel de status</li>
-                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-600 mt-1"></i> Controle de acesso por perfil de usuário</li>
+                <li class="flex items-start gap-2"><span class="chk t-indigo"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span> Protocolo automático, anexos e histórico de cada documento</li>
+                <li class="flex items-start gap-2"><span class="chk t-indigo"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span> Alertas de prazo de resposta e painel de status</li>
+                <li class="flex items-start gap-2"><span class="chk t-indigo"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span> Controle de acesso por perfil de usuário</li>
             </ul>
         </div>
 
@@ -492,9 +553,7 @@ if (document.documentElement.classList.contains('dark')) {
         </div>
 
         <div class="space-y-4">
-            <span class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">
-                <i class="fa-solid fa-road"></i> Obras de Expansão
-            </span>
+            <span class="pill t-emerald"><span class="pill-ico"><svg class="ico" aria-hidden="true"><use href="#i-route"/></svg></span>Obras de Expansão</span>
             <h3 class="text-2xl font-bold text-slate-900">Portal de Divulgação e Acompanhamento das Obras de Expansão</h3>
             <p class="text-slate-600 leading-relaxed">
                 Painel público que mostra à população e à gestão o que foi autorizado, o que está em execução
@@ -502,14 +561,14 @@ if (document.documentElement.classList.contains('dark')) {
                 valores, pontos luminosos e andamento de cada obra, vinculados ao contrato de concessão.
             </p>
             <ul class="space-y-2 text-sm text-slate-600">
-                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1"></i> Resumo financeiro: valor autorizado, pendentes de autorização e total geral</li>
-                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1"></i> Obras agrupadas por situação — em execução, energizadas e concluídas aceitas — com barra de progresso</li>
-                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1"></i> Pontos autorizados por cota de expansão e percentual de pontos já instalados</li>
-                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1"></i> Busca por rua, bairro ou ofício, filtro por mês e linhas do tempo das obras entregues</li>
+                <li class="flex items-start gap-2"><span class="chk t-emerald"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span> Resumo financeiro: valor autorizado, pendentes de autorização e total geral</li>
+                <li class="flex items-start gap-2"><span class="chk t-emerald"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span> Obras agrupadas por situação — em execução, energizadas e concluídas aceitas — com barra de progresso</li>
+                <li class="flex items-start gap-2"><span class="chk t-emerald"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span> Pontos autorizados por cota de expansão e percentual de pontos já instalados</li>
+                <li class="flex items-start gap-2"><span class="chk t-emerald"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span> Busca por rua, bairro ou ofício, filtro por mês e linhas do tempo das obras entregues</li>
             </ul>
             <div class="dashboard-card mt-6">
-                <a href="https://obras.ipfoz.com.br/" target="_blank" rel="noopener noreferrer" class="inline-block bg-sky-500 hover:bg-sky-400 active:bg-sky-400 text-white font-medium px-5 py-3.5 sm:py-3 rounded-xl transition text-center">
-                    Acessar o Painel &rarr;
+                <a href="https://obras.ipfoz.com.br/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center justify-center gap-2 shadow-sm shadow-sky-500/25 bg-sky-500 hover:bg-sky-400 active:bg-sky-400 text-white font-medium px-5 py-3.5 sm:py-3 rounded-xl transition text-center">
+                    Acessar o Painel <svg class="ico transition-transform group-hover:translate-x-0.5" style="font-size:1.05rem" aria-hidden="true"><use href="#i-arrow-right"/></svg>
                 </a>
             </div>
         </div>
@@ -525,23 +584,23 @@ if (document.documentElement.classList.contains('dark')) {
             <p class="text-slate-500 text-sm sm:text-base">Um processo simples, com a sua equipe validando cada etapa antes da entrega final.</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-4 gap-6">
-            <div class="text-center space-y-2">
-                <div class="w-10 h-10 mx-auto rounded-full bg-sky-600 text-white flex items-center justify-center font-bold">1</div>
+            <div class="step text-center space-y-2 relative">
+                <div class="step-num mx-auto">1</div>
                 <p class="font-semibold text-slate-900 text-sm">Levantamento</p>
                 <p class="text-xs text-slate-500">Entendo os dados e fluxos que você já tem hoje.</p>
             </div>
-            <div class="text-center space-y-2">
-                <div class="w-10 h-10 mx-auto rounded-full bg-sky-600 text-white flex items-center justify-center font-bold">2</div>
+            <div class="step text-center space-y-2 relative">
+                <div class="step-num mx-auto">2</div>
                 <p class="font-semibold text-slate-900 text-sm">Desenvolvimento</p>
                 <p class="text-xs text-slate-500">Construo o painel em ciclos, com entregas parciais.</p>
             </div>
-            <div class="text-center space-y-2">
-                <div class="w-10 h-10 mx-auto rounded-full bg-sky-600 text-white flex items-center justify-center font-bold">3</div>
+            <div class="step text-center space-y-2 relative">
+                <div class="step-num mx-auto">3</div>
                 <p class="font-semibold text-slate-900 text-sm">Validação</p>
                 <p class="text-xs text-slate-500">Sua equipe testa e pede ajustes antes de ir ao ar.</p>
             </div>
-            <div class="text-center space-y-2">
-                <div class="w-10 h-10 mx-auto rounded-full bg-sky-600 text-white flex items-center justify-center font-bold">4</div>
+            <div class="step text-center space-y-2 relative">
+                <div class="step-num mx-auto">4</div>
                 <p class="font-semibold text-slate-900 text-sm">Entrega e suporte</p>
                 <p class="text-xs text-slate-500">Treino a equipe e acompanho os primeiros ajustes.</p>
             </div>
@@ -594,7 +653,7 @@ if (document.documentElement.classList.contains('dark')) {
         </p>
         <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 pt-2 text-sm">
             <a href="mailto:seuemail@exemplo.com" class="bg-sky-500 hover:bg-sky-400 active:bg-sky-400 text-slate-900 font-semibold px-5 py-3.5 sm:py-3 rounded-xl transition flex items-center justify-center gap-2">
-                <i class="fa-solid fa-envelope"></i> dataewebs@gmail.com
+                <svg class="ico" style="font-size:1.15rem" aria-hidden="true"><use href="#i-mail"/></svg> dataewebs@gmail.com
             </a>
             <a href="https://wa.me/5545991528626?text=Ol%C3%A1%2C%20Carlos!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener" class="border border-white/25 hover:bg-white/10 active:bg-white/10 text-white font-semibold px-5 py-3.5 sm:py-3 rounded-xl transition flex items-center justify-center gap-2">
                 <i class="fa-brands fa-whatsapp"></i> (45) 99152 8626
